@@ -2,6 +2,7 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
+import TeaProvider from './hooks/useTeaContext';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -25,18 +26,20 @@ import TeaCategoryEditor from './pages/TeaCategoryEditor';
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/categories">
-          <Home />
-        </Route>
-        <Route exact path="/categories/add" component={TeaCategoryEditor} />
-        <Route path="/categories/:id" component={TeaCategoryEditor} />
-        <Route exact path="/">
-          <Redirect to="/categories" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
+    <TeaProvider>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/categories">
+            <Home />
+          </Route>
+          <Route exact path="/categories/add" component={TeaCategoryEditor} />
+          <Route path="/categories/:id" component={TeaCategoryEditor} />
+          <Route exact path="/">
+            <Redirect to="/categories" />
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </TeaProvider>
   </IonApp>
 );
 

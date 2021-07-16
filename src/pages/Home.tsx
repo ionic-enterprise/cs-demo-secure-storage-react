@@ -15,11 +15,12 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import { add } from 'ionicons/icons';
+import { useTeaContext } from '../hooks/useTeaContext';
 import { TeaCategory } from '../models';
 import './Home.css';
 
 const Home: React.FC = () => {
-  const categories: Array<TeaCategory> = [];
+  const { categories } = useTeaContext();
 
   return (
     <IonPage>
@@ -35,7 +36,7 @@ const Home: React.FC = () => {
           </IonFabButton>
         </IonFab>
 
-        {categories.length > 0 && (
+        {categories && categories.length > 0 && (
           <IonList>
             {categories.map((cat: TeaCategory) => (
               <IonItemSliding>

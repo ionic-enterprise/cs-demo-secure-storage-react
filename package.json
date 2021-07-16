@@ -4,9 +4,11 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "^3.1.1",
     "@capacitor/app": "1.0.2",
     "@capacitor/core": "3.1.1",
     "@capacitor/haptics": "1.0.2",
+    "@capacitor/ios": "^3.1.1",
     "@capacitor/keyboard": "1.0.2",
     "@capacitor/status-bar": "1.0.2",
     "@ionic-enterprise/identity-vault": "^5.0.0-beta.0",
@@ -25,6 +27,7 @@
     "ionicons": "^5.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-hook-form": "^7.11.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-script": "^2.0.5",
@@ -45,7 +48,7 @@
     "workbox-streams": "^5.1.4"
   },
   "scripts": {
-    "build": "react-scripts build",
+    "build": "react-scripts build && cap copy",
     "eject": "react-scripts eject",
     "prepare": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks",
     "start": "react-scripts start",

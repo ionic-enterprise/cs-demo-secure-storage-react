@@ -14,12 +14,12 @@ type Props = { children: React.ReactNode };
 
 interface TeaState {
   error: string | undefined;
-  categories: TeaCategory[];
+  categories: TeaCategory[] | undefined;
 }
 
 const initialState: TeaState = {
   error: undefined,
-  categories: [],
+  categories: undefined,
 };
 
 export const TeaContext = createContext<
@@ -54,23 +54,23 @@ export const useTeaContext = () => {
   const [state, setState] = useContext(TeaContext);
 
   const getTeaCategory = (id: number): TeaCategory | undefined => {
-    const category = state.categories.find(cat => cat.id === id);
+    const category = state.categories?.find(cat => cat.id === id);
     try {
       if (!category) throw new Error('Tea category cannot be found.');
-      return category;
     } catch (error) {
       setState(s => ({ ...s, error: error.toString() }));
     }
+    return category;
   };
 
   const saveTeaCategory = async (category: TeaCategory): Promise<void> => {
     try {
       const persistedCategory = await teaCategories.save(category);
-      let categories = state.categories.filter(
+      let categories = state.categories?.filter(
         cat => cat.id !== persistedCategory.id,
       );
-      categories.push(persistedCategory);
-      categories.sort((a, b) => (a.name > b.name ? 1 : -1));
+      categories?.push(persistedCategory);
+      categories?.sort((a, b) => (a.name > b.name ? 1 : -1));
       setState(s => ({ ...s, categories, error: undefined }));
     } catch (error) {
       setState(s => ({ ...s, error: error.toString() }));
@@ -80,7 +80,7 @@ export const useTeaContext = () => {
   const deleteTeaCategory = async (id: number): Promise<void> => {
     try {
       await teaCategories.delete(id);
-      const categories = state.categories.filter(cat => cat.id !== id);
+      const categories = state.categories?.filter(cat => cat.id !== id);
       setState(s => ({ ...s, categories, error: undefined }));
     } catch (error) {
       setState(s => ({ ...s, error: error.toString() }));

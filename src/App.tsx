@@ -21,16 +21,19 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import TeaCategoryEditor from './pages/TeaCategoryEditor';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
+        <Route exact path="/categories">
           <Home />
         </Route>
+        <Route exact path="/categories/add" component={TeaCategoryEditor} />
+        <Route path="/categories/:id" component={TeaCategoryEditor} />
         <Route exact path="/">
-          <Redirect to="/home" />
+          <Redirect to="/categories" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

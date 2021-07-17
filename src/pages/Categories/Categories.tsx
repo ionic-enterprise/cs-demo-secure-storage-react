@@ -10,9 +10,9 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import { add } from 'ionicons/icons';
-import TeaCategoryListItem from '../components/TeaCategoryListItem';
-import { useTeaContext } from '../hooks/useTeaContext';
-import { TeaCategory } from '../models';
+import TeaCategoryListItem from './TeaCategoryListItem';
+import { useTeaContext } from '../../hooks/useTeaContext';
+import { TeaCategory } from '../../models';
 import './Categories.css';
 
 const Categories: React.FC = () => {

@@ -19,7 +19,7 @@ import { warning } from 'ionicons/icons';
 import React, { useEffect } from 'react';
 import { Controller, useForm, useFormState } from 'react-hook-form';
 import { RouteComponentProps } from 'react-router';
-import { useTeaContext } from '../hooks/useTeaContext';
+import { useTeaContext } from '../../hooks/useTeaContext';
 import './TeaCategoryEditor.css';
 
 interface TeaCategoryEditorProps

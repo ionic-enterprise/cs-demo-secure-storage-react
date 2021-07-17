@@ -7,8 +7,8 @@ import {
 } from '@ionic/react';
 import React from 'react';
 
-import { TeaCategory } from '../models/TeaCategory';
-import { useTeaContext } from '../hooks/useTeaContext';
+import { TeaCategory } from '../../models/TeaCategory';
+import { useTeaContext } from '../../hooks/useTeaContext';
 
 import './TeaCategoryListItem.css';
 

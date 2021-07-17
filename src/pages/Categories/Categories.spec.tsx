@@ -1,14 +1,14 @@
 import { render } from '@testing-library/react';
-import Home from './Home';
+import Categories from './Categories';
 
-describe('<Home />', () => {
+describe('<Categories />', () => {
   it('displays the header', () => {
-    const { container } = render(<Home />);
+    const { container } = render(<Categories />);
     expect(container).toHaveTextContent(/Tea Categories/);
   });
 
   it('renders consistently', () => {
-    const { asFragment } = render(<Home />);
+    const { asFragment } = render(<Categories />);
     expect(asFragment()).toMatchSnapshot();
   });
 });

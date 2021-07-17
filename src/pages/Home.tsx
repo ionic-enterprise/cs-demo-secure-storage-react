@@ -18,6 +18,7 @@ import { add } from 'ionicons/icons';
 import { useTeaContext } from '../hooks/useTeaContext';
 import { TeaCategory } from '../models';
 import './Home.css';
+import TeaCategoryListItem from '../components/TeaCategoryListItem';
 
 const Home: React.FC = () => {
   const { categories } = useTeaContext();
@@ -39,17 +40,7 @@ const Home: React.FC = () => {
         {categories && categories.length > 0 && (
           <IonList>
             {categories.map((cat: TeaCategory) => (
-              <IonItemSliding>
-                <IonItem>
-                  <IonLabel>
-                    <div>{cat.name}</div>
-                    <div>{cat.description}</div>
-                  </IonLabel>
-                </IonItem>
-                <IonItemOptions>
-                  <IonItemOption></IonItemOption>
-                </IonItemOptions>
-              </IonItemSliding>
+              <TeaCategoryListItem category={cat}></TeaCategoryListItem>
             ))}
           </IonList>
         )}

@@ -4,23 +4,18 @@ import {
   IonFabButton,
   IonHeader,
   IonIcon,
-  IonItem,
-  IonItemOption,
-  IonItemOptions,
-  IonItemSliding,
-  IonLabel,
   IonList,
   IonPage,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
 import { add } from 'ionicons/icons';
+import TeaCategoryListItem from '../components/TeaCategoryListItem';
 import { useTeaContext } from '../hooks/useTeaContext';
 import { TeaCategory } from '../models';
-import './Home.css';
-import TeaCategoryListItem from '../components/TeaCategoryListItem';
+import './Categories.css';
 
-const Home: React.FC = () => {
+const Categories: React.FC = () => {
   const { categories } = useTeaContext();
 
   return (
@@ -57,4 +52,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Categories;

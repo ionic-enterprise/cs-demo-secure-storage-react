@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+import Categories from './pages/Categories';
 import TeaProvider from './hooks/useTeaContext';
 
 /* Core CSS required for Ionic components to work properly */
@@ -30,7 +30,7 @@ const App: React.FC = () => (
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path="/categories">
-            <Home />
+            <Categories />
           </Route>
           <Route exact path="/categories/add" component={TeaCategoryEditor} />
           <Route path="/categories/:id" component={TeaCategoryEditor} />

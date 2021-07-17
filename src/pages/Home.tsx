@@ -44,6 +44,14 @@ const Home: React.FC = () => {
             ))}
           </IonList>
         )}
+        {categories && !categories.length && (
+          <div className="tea-categories-list--empty">
+            <div className="container">
+              <h1>No Categories Found</h1>
+              <p>Tap the button below to add a tea category to the list!</p>
+            </div>
+          </div>
+        )}
       </IonContent>
     </IonPage>
   );

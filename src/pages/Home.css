@@ -1,0 +1,11 @@
+.tea-categories-list--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+}
+
+.tea-categories-list--empty .container {
+  padding: 3em;
+  text-align: center;
+}

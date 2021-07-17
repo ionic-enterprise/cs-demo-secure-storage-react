@@ -87,9 +87,10 @@ const TeaCategoryEditor: React.FC<TeaCategoryEditorProps> = ({
               <Controller
                 name="name"
                 control={control}
-                render={({ field: { onChange } }) => (
+                render={({ field: { onChange, value } }) => (
                   <IonInput
                     onIonChange={e => onChange(e.detail.value!)}
+                    value={value}
                   ></IonInput>
                 )}
                 rules={{
@@ -107,10 +108,11 @@ const TeaCategoryEditor: React.FC<TeaCategoryEditorProps> = ({
               <Controller
                 name="description"
                 control={control}
-                render={({ field: { onChange } }) => (
+                render={({ field: { onChange, value } }) => (
                   <IonTextarea
                     rows={5}
                     onIonChange={e => onChange(e.detail.value!)}
+                    value={value}
                   ></IonTextarea>
                 )}
                 rules={{ required: true }}

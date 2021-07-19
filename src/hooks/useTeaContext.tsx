@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import { TeaCategory } from '../models/TeaCategory';
 import teaCategories from '../services/TeaCategories';
 import { TeaContext } from './TeaContext';
@@ -6,15 +6,18 @@ import { TeaContext } from './TeaContext';
 export const useTeaContext = () => {
   const [teaState, setTeaState] = useContext(TeaContext);
 
-  const getTeaCategory = (id: number): TeaCategory | undefined => {
-    const category = teaState.categories?.find(cat => cat.id === id);
-    try {
-      if (!category) throw new Error('Tea category cannot be found.');
-    } catch (error) {
-      setTeaState(s => ({ ...s, error: error.toString() }));
-    }
-    return category;
-  };
+  const getTeaCategory = useCallback(
+    (id: number): TeaCategory | undefined => {
+      const category = teaState.categories?.find(cat => cat.id === id);
+      try {
+        if (!category) throw new Error('Tea category cannot be found.');
+      } catch (error) {
+        setTeaState(s => ({ ...s, error: error.toString() }));
+      }
+      return category;
+    },
+    [teaState.categories, setTeaState],
+  );
 
   const saveTeaCategory = async (category: TeaCategory): Promise<void> => {
     try {

@@ -1,18 +1,27 @@
-import { Vault } from '@ionic-enterprise/identity-vault';
+import { Capacitor } from '@capacitor/core';
+import {
+  BrowserVault,
+  DeviceSecurityType,
+  IdentityVaultConfig,
+  Vault,
+  VaultType,
+} from '@ionic-enterprise/identity-vault';
 import key from './Key';
 
 export class KeyVaultService {
   private encryptionKey = 'encryption-key';
-  private vault: Vault;
+  private vault: BrowserVault | Vault;
 
   constructor() {
-    this.vault = new Vault({
+    const web = Capacitor.getPlatform() === 'web';
+    const config: IdentityVaultConfig = {
       key: 'io.ionic.cs-demo-iv-ss-ng.keys',
-      type: 'SecureStorage',
-      deviceSecurityType: 'SystemPasscode',
+      type: VaultType.SecureStorage,
+      deviceSecurityType: DeviceSecurityType.SystemPasscode,
       lockAfterBackgrounded: 0,
       unlockVaultOnLoad: false,
-    });
+    };
+    this.vault = web ? new BrowserVault(config) : new Vault(config);
   }
 
   async get(): Promise<string> {

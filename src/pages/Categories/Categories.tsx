@@ -10,10 +10,11 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import { add } from 'ionicons/icons';
-import TeaCategoryListItem from './TeaCategoryListItem';
+import React from 'react';
 import { useTeaContext } from '../../hooks/useTeaContext';
 import { TeaCategory } from '../../models';
 import './Categories.css';
+import TeaCategoryListItem from './TeaCategoryListItem';
 
 const Categories: React.FC = () => {
   const { categories } = useTeaContext();
@@ -35,7 +36,10 @@ const Categories: React.FC = () => {
         {categories && categories.length > 0 && (
           <IonList>
             {categories.map((cat: TeaCategory) => (
-              <TeaCategoryListItem category={cat}></TeaCategoryListItem>
+              <TeaCategoryListItem
+                key={cat.id}
+                category={cat}
+              ></TeaCategoryListItem>
             ))}
           </IonList>
         )}

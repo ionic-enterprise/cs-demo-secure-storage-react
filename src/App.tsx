@@ -10,6 +10,7 @@ import '@ionic/react/css/structure.css';
 import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/typography.css';
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { TeaProvider } from './hooks/TeaContext';
 import Categories from './pages/Categories/Categories';

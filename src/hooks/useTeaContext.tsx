@@ -27,14 +27,14 @@ export const TeaContext = createContext<
 >([initialState, () => initialState]);
 
 const TeaProvider = ({ children }: Props) => {
-  const [state, setState] = useState<TeaState>(initialState);
+  const [teaState, setTeaState] = useState<TeaState>(initialState);
 
   const initializeDb = useCallback(async () => {
     try {
       const categories = await teaCategories.getAll();
-      setState(s => ({ ...s, categories, error: undefined }));
+      setTeaState(s => ({ ...s, categories, error: undefined }));
     } catch (error) {
-      setState(s => ({ ...s, error: error.toString() }));
+      setTeaState(s => ({ ...s, error: error.toString() }));
     }
   }, []);
 
@@ -43,7 +43,7 @@ const TeaProvider = ({ children }: Props) => {
   }, [initializeDb]);
 
   return (
-    <TeaContext.Provider value={[state, setState]}>
+    <TeaContext.Provider value={[teaState, setTeaState]}>
       {children}
     </TeaContext.Provider>
   );
@@ -51,14 +51,14 @@ const TeaProvider = ({ children }: Props) => {
 export default TeaProvider;
 
 export const useTeaContext = () => {
-  const [state, setState] = useContext(TeaContext);
+  const [teaState, setTeaState] = useContext(TeaContext);
 
   const getTeaCategory = (id: number): TeaCategory | undefined => {
-    const category = state.categories?.find(cat => cat.id === id);
+    const category = teaState.categories?.find(cat => cat.id === id);
     try {
       if (!category) throw new Error('Tea category cannot be found.');
     } catch (error) {
-      setState(s => ({ ...s, error: error.toString() }));
+      setTeaState(s => ({ ...s, error: error.toString() }));
     }
     return category;
   };
@@ -66,30 +66,30 @@ export const useTeaContext = () => {
   const saveTeaCategory = async (category: TeaCategory): Promise<void> => {
     try {
       const persistedCategory = await teaCategories.save(category);
-      let categories = state.categories?.filter(
+      let categories = teaState.categories?.filter(
         cat => cat.id !== persistedCategory.id,
       );
       categories?.push(persistedCategory);
       categories?.sort((a, b) => (a.name > b.name ? 1 : -1));
-      setState(s => ({ ...s, categories, error: undefined }));
+      setTeaState(s => ({ ...s, categories, error: undefined }));
     } catch (error) {
-      setState(s => ({ ...s, error: error.toString() }));
+      setTeaState(s => ({ ...s, error: error.toString() }));
     }
   };
 
   const deleteTeaCategory = async (id: number): Promise<void> => {
     try {
       await teaCategories.delete(id);
-      const categories = state.categories?.filter(cat => cat.id !== id);
-      setState(s => ({ ...s, categories, error: undefined }));
+      const categories = teaState.categories?.filter(cat => cat.id !== id);
+      setTeaState(s => ({ ...s, categories, error: undefined }));
     } catch (error) {
-      setState(s => ({ ...s, error: error.toString() }));
+      setTeaState(s => ({ ...s, error: error.toString() }));
     }
   };
 
   return {
-    error: state.error,
-    categories: state.categories,
+    error: teaState.error,
+    categories: teaState.categories,
     deleteTeaCategory,
     getTeaCategory,
     saveTeaCategory,

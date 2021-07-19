@@ -11,7 +11,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/typography.css';
 import { Redirect, Route } from 'react-router-dom';
-import TeaProvider from './hooks/useTeaContext';
+import { TeaProvider } from './hooks/TeaContext';
 import Categories from './pages/Categories/Categories';
 import TeaCategoryEditor from './pages/TeaCategoryEditor/TeaCategoryEditor';
 import './theme/variables.css';

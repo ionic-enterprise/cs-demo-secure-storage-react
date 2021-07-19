@@ -51,7 +51,7 @@ const TeaCategoryEditor: React.FC<TeaCategoryEditorProps> = ({
   }, [id]);
 
   const onSubmit = async (data: any) => {
-    id !== 'add' && (data.id = id);
+    id && id !== 'add' && (data.id = parseInt(id, 10));
     await saveTeaCategory(data);
     history.goBack();
   };

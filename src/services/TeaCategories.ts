@@ -3,6 +3,24 @@ import { TeaCategory } from '../models';
 import { SQLiteTransaction } from '@ionic-enterprise/secure-storage';
 
 export class TeaCategoriesService {
+  async crash() {
+    const results: Array<any> = [];
+    await database.ready();
+    await database.handle?.transaction(tx =>
+      tx.executeSql(
+        'SELECT abs(?) AS absResult',
+        ['9e999'],
+        // tslint:disable-next-line:variable-name
+        (_t: SQLiteTransaction, r: any) => {
+          for (let i = 0; i < r.rows.length; i++) {
+            results.push(r.rows.item(i));
+          }
+        },
+      ),
+    );
+    return results;
+  }
+
   async getAll(): Promise<Array<TeaCategory>> {
     const cats: Array<TeaCategory> = [];
     await database.ready();

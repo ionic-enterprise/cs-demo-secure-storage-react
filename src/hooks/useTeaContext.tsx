@@ -6,6 +6,11 @@ import { TeaContext } from './TeaContext';
 export const useTeaContext = () => {
   const [teaState, setTeaState] = useContext(TeaContext);
 
+  const crashTest = async () => {
+    const results = await teaCategories.crash();
+    console.log(results);
+  };
+
   const getTeaCategory = useCallback(
     (id: number): TeaCategory | undefined => {
       const category = teaState.categories?.find(cat => cat.id === id);
@@ -49,5 +54,6 @@ export const useTeaContext = () => {
     deleteTeaCategory,
     getTeaCategory,
     saveTeaCategory,
+    crashTest,
   };
 };

@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonContent,
   IonFab,
   IonFabButton,
@@ -17,7 +18,7 @@ import './Categories.css';
 import TeaCategoryListItem from './TeaCategoryListItem';
 
 const Categories: React.FC = () => {
-  const { categories } = useTeaContext();
+  const { crashTest, categories } = useTeaContext();
 
   return (
     <IonPage>
@@ -32,7 +33,7 @@ const Categories: React.FC = () => {
             <IonIcon icon={add}></IonIcon>
           </IonFabButton>
         </IonFab>
-
+        <IonButton onClick={crashTest}>Crash Me</IonButton>
         {categories && categories.length > 0 && (
           <IonList>
             {categories.map((cat: TeaCategory) => (
